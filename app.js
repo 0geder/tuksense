@@ -1,0 +1,86 @@
+// Stages top (result) to bottom (start). v = video name in videos/, i = image name in images/.
+var stages = [
+  ["Working", "Road test, 27 Oct 2026", [
+    { v: "road-test-car-park", c: "Road test, 27 October 2026: the trike driven in a car park at 10 to 20 km/h with the telemetry, cameras and dashboard running." }]],
+  ["Road test and dashboard", "27 Oct 2026", [
+    { v: "dashboard-timelapse", c: "Dashboard screens recorded every second from 11:30 to 12:40 on 27 October 2026, shown at speed." },
+    { v: "forward-view-dashboard", c: "Forward view over the dashboard mount during the road test. 27 Oct 2026" },
+    { v: "dashboard-on-trike-outdoors", c: "Dashboard screen on the trike outdoors before the run. 27 Oct 2026" }]],
+  ["Integration on the trike", "26 to 27 Oct 2026", [
+    { v: "pods-wiring-deck", c: "Yellow sensor pods and wiring on the trike deck. 26 Oct 2026" },
+    { v: "map-page-on-trike", c: "Map page on the dashboard screen mounted at the handlebars. 26 Oct 2026" },
+    { i: "enclosure-boards", c: "Printed yellow enclosure with the boards fitted inside. 26 Oct 2026" },
+    { i: "enclosure-pi-ribbon", c: "Enclosure holding the Raspberry Pi, with the camera ribbon cable. 26 Oct 2026" },
+    { i: "trike-front-wiring", c: "Front of the trike with wiring at the handlebars. 26 Oct 2026" },
+    { i: "measuring-pod-positions", c: "Tape-measuring pod positions on the trike. 27 Oct 2026" }]],
+  ["Dashboard and cameras on the bench", "3 to 17 Oct 2026", [
+    { v: "camera-feed-bench", c: "Front camera feed on the dashboard screen, bench set-up. 12 Oct 2026" },
+    { v: "camera-on-dashboard-bench", c: "Camera image shown on the dashboard screen, boards on the bench. 3 Oct 2026" },
+    { v: "rear-camera-street", c: "Enclosure at a window and the rear camera view of the street on the dashboard. 17 Oct 2026" }]],
+  ["Electronics and first builds", "30 Sep to 2 Oct 2026", [
+    { v: "bench-setup", c: "Bench set-up: boards and wiring, then a gauge page on a screen. 2 Oct 2026" },
+    { i: "bms-app", c: "Battery management app reading the trike pack: 60%, 74.77 V. 30 Sep 2026" }]],
+  ["Start", "Jul to Sep 2026", [
+    { i: "project-brief", c: "Project brief page with the windshield HUD concept render. 22 Jul 2026" },
+    { i: "hdmi-vga-listing", c: "Online listing for an HDMI to VGA adapter. 20 Sep 2026" }]]
+];
+var $ = function (id) { return document.getElementById(id); };
+var thumb = function (it) { return it.v ? "videos/" + it.v + ".jpg" : "images/" + it.i + ".jpg"; };
+var path = $("path"), svg = $("links"), dlg = $("player"), cur = 0;
+
+// Build the zigzag cards
+stages.forEach(function (s, k) {
+  var a = document.createElement("article");
+  a.className = "card " + (k % 2 ? "right" : "left") + (k === 0 ? " working" : "") + (k === stages.length - 1 ? " start" : "");
+  a.innerHTML = '<button class="card-main' + (s[2][0].v ? " is-video" : "") + '" data-j="0" aria-label="Open ' + s[0] + '"><img src="' + thumb(s[2][0]) + '" alt=""></button>' +
+    "<h2>" + s[0] + '</h2><p class="date">' + s[1] + "</p>" +
+    (s[2].length > 1 ? '<div class="thumbs">' + s[2].map(function (it, j) {
+      return '<button data-j="' + j + '"' + (it.v ? ' class="is-video"' : "") + ' aria-label="' + it.c + '"><img src="' + thumb(it) + '" alt="" loading="lazy"></button>';
+    }).join("") + "</div>" : "");
+  a.querySelectorAll("button").forEach(function (b) { b.onclick = function () { open(k, +b.dataset.j); }; });
+  path.appendChild(a);
+});
+
+// Diagonal links between card corners, plus the "Journey" brace
+function draw() {
+  var box = path.getBoundingClientRect(), cards = path.querySelectorAll(".card"), h = "";
+  var r = [].map.call(cards, function (c) { var q = c.getBoundingClientRect(); return { l: q.left - box.left, r: q.right - box.left, t: q.top - box.top, b: q.bottom - box.top }; });
+  for (var k = 0; k < r.length - 1; k++) {
+    var x1 = k % 2 ? r[k].l : r[k].r, x2 = k % 2 ? r[k + 1].r : r[k + 1].l;
+    h += '<line class="link" x1="' + x1 + '" y1="' + r[k].b + '" x2="' + x2 + '" y2="' + r[k + 1].t + '"/>';
+  }
+  var y1 = r[1].t, y2 = r[r.length - 2].b, m = (y1 + y2) / 2, x = 24;
+  h += '<path class="brace" d="M' + (x + 8) + " " + y1 + " Q" + x + " " + y1 + " " + x + " " + (y1 + 14) + " V" + (m - 14) + " Q" + x + " " + m + " " + (x - 8) + " " + m +
+    " Q" + x + " " + m + " " + x + " " + (m + 14) + " V" + (y2 - 14) + " Q" + x + " " + y2 + " " + (x + 8) + " " + y2 + '"/>' +
+    '<text class="brace-label" text-anchor="middle" transform="translate(' + (x - 14) + " " + m + ') rotate(-90)">Journey</text>';
+  svg.setAttribute("viewBox", "0 0 " + box.width + " " + box.height);
+  svg.innerHTML = h;
+}
+addEventListener("resize", draw);
+addEventListener("load", function () { draw(); scrollTo(0, 0); });
+path.querySelectorAll("img").forEach(function (im) { im.addEventListener("load", draw); });
+draw();
+
+// In-page player
+function show(j) {
+  var it = stages[cur][2][j];
+  $("pl-stage").innerHTML = it.v
+    ? '<video controls autoplay playsinline preload="metadata" poster="videos/' + it.v + '.jpg" src="videos/' + it.v + '.mp4"></video>'
+    : '<img src="images/' + it.i + '.jpg" alt="">';
+  $("pl-cap").textContent = it.c;
+  $("pl-thumbs").querySelectorAll("button").forEach(function (b, n) { b.setAttribute("aria-current", n === j); });
+}
+function open(k, j) {
+  var s = stages[cur = k];
+  $("pl-title").textContent = s[0];
+  $("pl-date").textContent = s[1];
+  $("pl-thumbs").innerHTML = s[2].length < 2 ? "" : s[2].map(function (it, n) {
+    return '<button data-n="' + n + '"' + (it.v ? ' class="is-video"' : "") + ' aria-label="' + it.c + '"><img src="' + thumb(it) + '" alt=""></button>';
+  }).join("");
+  $("pl-thumbs").querySelectorAll("button").forEach(function (b) { b.onclick = function () { show(+b.dataset.n); }; });
+  dlg.showModal();
+  show(j);
+}
+$("pl-close").onclick = function () { dlg.close(); };
+dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+dlg.addEventListener("close", function () { $("pl-stage").innerHTML = ""; });

@@ -1,0 +1,53 @@
+/* Three colours only: paper, ink, terracotta */
+:root { --paper: #F7F4EF; --ink: #2B2A28; --accent: #B85042; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.5 "Inter", system-ui, sans-serif; overflow-x: hidden; }
+h1, h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.2; margin: 0; }
+header, main, footer { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+header { padding-top: 36px; }
+header h1 { font-size: clamp(1.25rem, 3vw, 1.8rem); }
+header p { margin: 8px 0 0; }
+header span, .date { color: var(--accent); }
+
+.path { position: relative; padding: 32px 0 8px 44px; }
+.links { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.link, .brace { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+.brace-label { fill: var(--accent); font: 500 12px "Inter", sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+
+.card { width: 42%; margin: 0 0 56px; padding: 10px; border: 1px solid var(--ink); border-radius: 10px; background: var(--paper); }
+.card:last-child { margin-bottom: 0; }
+.card.right { margin-left: auto; }
+.card.working { width: 52%; padding: 14px; border: 2px solid var(--ink); border-radius: 24px; box-shadow: 0 4px 14px rgba(43, 42, 40, .08); }
+.card.start { border-style: dashed; }
+.card h2 { font-size: 1.05rem; margin-top: 10px; }
+.card.working h2 { font-size: 1.6rem; }
+.date { margin: 2px 0 0; font-size: .9rem; }
+
+button { font: inherit; cursor: pointer; }
+.card-main { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: 6px; overflow: hidden; background: var(--ink); }
+.working .card-main { aspect-ratio: 4 / 3; border-radius: 14px; }
+img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.thumbs, #pl-thumbs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.thumbs button, #pl-thumbs button { position: relative; width: 56px; height: 42px; padding: 0; border: 1px solid var(--ink); border-radius: 4px; overflow: hidden; background: var(--ink); }
+button:hover, button:focus-visible, #pl-thumbs button[aria-current="true"] { outline: 2px solid var(--accent); outline-offset: 1px; }
+.is-video::after { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-40%, -50%); border-left: 12px solid var(--paper); border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
+.card-main.is-video::after { border-left-width: 30px; border-top-width: 18px; border-bottom-width: 18px; }
+.card-main.is-video:hover::after { border-left-color: var(--accent); }
+
+@media (max-width: 640px) {
+  .path { padding-left: 32px; }
+  .card, .card.working { width: 85%; margin-bottom: 40px; }
+  .card.working h2 { font-size: 1.35rem; }
+}
+
+dialog { width: min(920px, calc(100vw - 24px)); max-height: calc(100vh - 24px); padding: 14px 16px 16px; border: 1px solid var(--ink); border-radius: 12px; background: var(--paper); color: var(--ink); }
+dialog::backdrop { background: rgba(43, 42, 40, .75); }
+.pl-head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.pl-head h2 { font-size: 1.2rem; }
+#pl-close { width: 38px; height: 38px; flex: none; border: 1px solid var(--ink); border-radius: 50%; background: var(--paper); color: var(--ink); font-size: 1.4rem; line-height: 1; }
+#pl-stage { background: var(--ink); border-radius: 6px; overflow: hidden; }
+#pl-stage video, #pl-stage img { max-height: 66vh; object-fit: contain; }
+#pl-cap { margin: 10px 0 0; }
+
+footer { margin-top: 40px; padding-bottom: 32px; font-size: .875rem; }
+footer p { margin: 0; padding-top: 16px; border-top: 1px solid var(--ink); }
