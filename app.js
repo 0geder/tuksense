@@ -32,7 +32,10 @@ var path = $("path"), svg = $("links"), dlg = $("player"), cur = 0;
 stages.forEach(function (s, k) {
   var a = document.createElement("article");
   a.className = "card " + (k % 2 ? "right" : "left") + (k === 0 ? " working" : "") + (k === stages.length - 1 ? " start" : "");
-  a.innerHTML = '<button class="card-main' + (s[2][0].v ? " is-video" : "") + '" data-j="0" aria-label="Open ' + s[0] + '"><img src="' + thumb(s[2][0]) + '" alt=""></button>' +
+  var m0 = s[2][0], media = m0.v
+    ? '<video class="loop" muted loop playsinline preload="none" poster="' + thumb(m0) + '" src="videos/' + m0.v + '.mp4"></video>'
+    : '<img src="' + thumb(m0) + '" alt="">';
+  a.innerHTML = '<button class="card-main" data-j="0" aria-label="Open ' + s[0] + '">' + media + '</button>' +
     "<h2>" + s[0] + '</h2><p class="date">' + s[1] + "</p>" +
     (s[2].length > 1 ? '<div class="thumbs">' + s[2].map(function (it, j) {
       return '<button data-j="' + j + '"' + (it.v ? ' class="is-video"' : "") + ' aria-label="' + it.c + '"><img src="' + thumb(it) + '" alt="" loading="lazy"></button>';
@@ -59,13 +62,20 @@ function draw() {
 addEventListener("resize", draw);
 addEventListener("load", function () { draw(); scrollTo(0, 0); });
 path.querySelectorAll("img").forEach(function (im) { im.addEventListener("load", draw); });
+path.querySelectorAll("video").forEach(function (v) { v.addEventListener("loadedmetadata", draw); });
+
+// Card videos play muted on a loop while on screen, and pause when scrolled away
+var io = "IntersectionObserver" in window && new IntersectionObserver(function (es) {
+  es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { v.play().catch(function () {}); } else { v.pause(); } });
+}, { threshold: 0.25 });
+path.querySelectorAll("video.loop").forEach(function (v) { if (io) { io.observe(v); } else { v.autoplay = true; v.play().catch(function () {}); } });
 draw();
 
 // In-page player
 function show(j) {
   var it = stages[cur][2][j];
   $("pl-stage").innerHTML = it.v
-    ? '<video controls autoplay playsinline preload="metadata" poster="videos/' + it.v + '.jpg" src="videos/' + it.v + '.mp4"></video>'
+    ? '<video controls autoplay muted loop playsinline preload="metadata" poster="videos/' + it.v + '.jpg" src="videos/' + it.v + '.mp4"></video>'
     : '<img src="images/' + it.i + '.jpg" alt="">';
   $("pl-cap").textContent = it.c;
   $("pl-thumbs").querySelectorAll("button").forEach(function (b, n) { b.setAttribute("aria-current", n === j); });
