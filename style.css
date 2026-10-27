@@ -1,8 +1,8 @@
-/* Three colours only: paper, ink, terracotta */
-:root { --paper: #F7F4EF; --ink: #2B2A28; --accent: #B85042; }
+/* Three colours, from tukzie.com: snow, ink, TUKZIE blue */
+:root { --paper: #FBFAF6; --ink: #22252B; --accent: #0F3B67; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.5 "Inter", system-ui, sans-serif; overflow-x: hidden; }
-h1, h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.2; margin: 0; }
+h1, h2 { font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 600; line-height: 1.15; letter-spacing: -.01em; margin: 0; }
 header, main, footer { max-width: 920px; margin: 0 auto; padding: 0 16px; }
 header { padding-top: 36px; }
 header h1 { font-size: clamp(1.25rem, 3vw, 1.8rem); }
@@ -17,7 +17,7 @@ header span, .date { color: var(--accent); }
 .card { width: 42%; margin: 0 0 56px; padding: 10px; border: 1px solid var(--ink); border-radius: 10px; background: var(--paper); }
 .card:last-child { margin-bottom: 0; }
 .card.right { margin-left: auto; }
-.card.working { width: 52%; padding: 14px; border: 2px solid var(--ink); border-radius: 24px; box-shadow: 0 4px 14px rgba(43, 42, 40, .08); }
+.card.working { width: 52%; padding: 14px; border: 2px solid var(--ink); border-radius: 24px; box-shadow: 0 4px 14px rgba(34, 37, 43, .08); }
 .card.start { border-style: dashed; }
 .card h2 { font-size: 1.05rem; margin-top: 10px; }
 .card.working h2 { font-size: 1.6rem; }
@@ -41,7 +41,7 @@ button:hover, button:focus-visible, #pl-thumbs button[aria-current="true"] { out
 }
 
 dialog { width: min(920px, calc(100vw - 24px)); max-height: calc(100vh - 24px); padding: 14px 16px 16px; border: 1px solid var(--ink); border-radius: 12px; background: var(--paper); color: var(--ink); }
-dialog::backdrop { background: rgba(43, 42, 40, .75); }
+dialog::backdrop { background: rgba(34, 37, 43, .75); }
 .pl-head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
 .pl-head h2 { font-size: 1.2rem; }
 #pl-close { width: 38px; height: 38px; flex: none; border: 1px solid var(--ink); border-radius: 50%; background: var(--paper); color: var(--ink); font-size: 1.4rem; line-height: 1; }
