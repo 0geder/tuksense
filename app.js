@@ -20,10 +20,12 @@ var stages = [
   ["Electronics and first builds", "30 Sep to 2 Oct 2026", [
     { v: "bench-setup", c: "Bench set-up: boards and wiring, then a gauge page on a screen. 2 Oct 2026" },
     { i: "bms-app", c: "Battery management app reading the trike pack: 60%, 74.77 V. 30 Sep 2026" }]],
-  ["Start", "Jul to Sep 2026", [
+  ["Start", "Late Jul to Sep 2026", [
     { i: "project-brief", c: "Project brief page with the windshield HUD concept render. 22 Jul 2026" },
     { i: "hdmi-vga-listing", c: "Online listing for an HDMI to VGA adapter. 20 Sep 2026" }]]
 ];
+// Month shown beside each card on hover, read as a timeline from top (now) to bottom (start)
+var when = ["October 2026: road test", "October 2026", "October 2026", "October 2026", "September to October 2026", "Late July to September 2026: the project begins"];
 var $ = function (id) { return document.getElementById(id); };
 var thumb = function (it) { return it.v ? "videos/" + it.v + ".jpg" : "images/" + it.i + ".jpg"; };
 var path = $("path"), svg = $("links"), dlg = $("player"), cur = 0;
@@ -31,6 +33,7 @@ var path = $("path"), svg = $("links"), dlg = $("player"), cur = 0;
 // Build the zigzag cards
 stages.forEach(function (s, k) {
   var a = document.createElement("article");
+  a.dataset.when = when[k];
   a.className = "card " + (k % 2 ? "right" : "left") + (k === 0 ? " working" : "") + (k === stages.length - 1 ? " start" : "");
   var m0 = s[2][0], media = m0.v
     ? '<video class="loop" muted loop playsinline preload="none" poster="' + thumb(m0) + '" src="videos/' + m0.v + '.mp4"></video>'
@@ -44,7 +47,7 @@ stages.forEach(function (s, k) {
   path.appendChild(a);
 });
 
-// Diagonal links between card corners, plus the "Journey" brace
+// Diagonal links between card corners
 function draw() {
   var box = path.getBoundingClientRect(), cards = path.querySelectorAll(".card"), h = "";
   var r = [].map.call(cards, function (c) { var q = c.getBoundingClientRect(); return { l: q.left - box.left, r: q.right - box.left, t: q.top - box.top, b: q.bottom - box.top }; });
@@ -52,10 +55,6 @@ function draw() {
     var x1 = k % 2 ? r[k].l : r[k].r, x2 = k % 2 ? r[k + 1].r : r[k + 1].l;
     h += '<line class="link" x1="' + x1 + '" y1="' + r[k].b + '" x2="' + x2 + '" y2="' + r[k + 1].t + '"/>';
   }
-  var y1 = r[1].t, y2 = r[r.length - 2].b, m = (y1 + y2) / 2, x = 24;
-  h += '<path class="brace" d="M' + (x + 8) + " " + y1 + " Q" + x + " " + y1 + " " + x + " " + (y1 + 14) + " V" + (m - 14) + " Q" + x + " " + m + " " + (x - 8) + " " + m +
-    " Q" + x + " " + m + " " + x + " " + (m + 14) + " V" + (y2 - 14) + " Q" + x + " " + y2 + " " + (x + 8) + " " + y2 + '"/>' +
-    '<text class="brace-label" text-anchor="middle" transform="translate(' + (x - 14) + " " + m + ') rotate(-90)">Journey</text>';
   svg.setAttribute("viewBox", "0 0 " + box.width + " " + box.height);
   svg.innerHTML = h;
 }
