@@ -20,8 +20,7 @@ var stages = [
   ["Electronics and first builds", "30 Sep to 2 Oct 2026", [
     { i: "bms-app", c: "Battery management app reading the trike pack: 60%, 74.77 V. 30 Sep 2026" }]],
   ["Start", "Late Jul to Sep 2026", [
-    { i: "project-brief", c: "Project brief page with the windshield HUD concept render. 22 Jul 2026" },
-    { i: "hdmi-vga-listing", c: "Online listing for an HDMI to VGA adapter. 20 Sep 2026" }]]
+    { i: "project-brief", c: "Project brief page with the windshield HUD concept render. 22 Jul 2026" }]]
 ];
 // Month shown beside each card on hover, read as a timeline from top (now) to bottom (start)
 var when = ["October 2026: road test", "October 2026", "October 2026", "October 2026", "September to October 2026", "Late July to September 2026: the project begins"];
