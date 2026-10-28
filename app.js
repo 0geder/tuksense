@@ -1,10 +1,9 @@
 // Stages top (result) to bottom (start). v = video name in videos/, i = image name in images/.
 var stages = [
   ["Working", "Road test, 27 Oct 2026", [
-    { v: "road-test-car-park", c: "Road test, 27 October 2026: the trike driven in a car park at 10 to 20 km/h with the telemetry, cameras and dashboard running." }]],
+    { v: "overview", c: "The project in one minute: from the bench to the road test of 27 October 2026." }]],
   ["Road test and dashboard", "27 Oct 2026", [
     { v: "dashboard-timelapse", c: "Dashboard screens recorded every second from 11:30 to 12:40 on 27 October 2026, shown at speed." },
-    { v: "forward-view-dashboard", c: "Forward view over the dashboard mount during the road test. 27 Oct 2026" },
     { v: "dashboard-on-trike-outdoors", c: "Dashboard screen on the trike outdoors before the run. 27 Oct 2026" }]],
   ["Integration on the trike", "26 to 27 Oct 2026", [
     { v: "pods-wiring-deck", c: "Yellow sensor pods and wiring on the trike deck. 26 Oct 2026" },
@@ -18,7 +17,6 @@ var stages = [
     { v: "camera-on-dashboard-bench", c: "Camera image shown on the dashboard screen, boards on the bench. 3 Oct 2026" },
     { v: "rear-camera-street", c: "Enclosure at a window and the rear camera view of the street on the dashboard. 17 Oct 2026" }]],
   ["Electronics and first builds", "30 Sep to 2 Oct 2026", [
-    { v: "bench-setup", c: "Bench set-up: boards and wiring, then a gauge page on a screen. 2 Oct 2026" },
     { i: "bms-app", c: "Battery management app reading the trike pack: 60%, 74.77 V. 30 Sep 2026" }]],
   ["Start", "Late Jul to Sep 2026", [
     { i: "project-brief", c: "Project brief page with the windshield HUD concept render. 22 Jul 2026" },
