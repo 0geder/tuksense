@@ -68,3 +68,7 @@ footer .credit { font-size: .8rem; opacity: .75; margin-top: 4px; }
 .side-card .card-main { aspect-ratio: 16 / 9; }
 .side-card h2 { font-size: 1.05rem; margin-top: 10px; }
 @media (max-width: 640px) { .side-card { position: static; width: 85%; margin: 0 0 40px auto; } }
+
+/* Sound toggle */
+.sound-btn { position: fixed; right: 16px; bottom: 16px; z-index: 5; padding: 8px 14px; border: 1px solid var(--accent); border-radius: 999px; background: var(--paper); color: var(--accent); font: 500 .9rem "Inter", sans-serif; }
+.sound-btn[aria-pressed="true"] { background: var(--accent); color: var(--paper); }

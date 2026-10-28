@@ -100,3 +100,22 @@ function open(k, j) {
 $("pl-close").onclick = function () { dlg.close(); };
 dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
 dlg.addEventListener("close", function () { $("pl-stage").innerHTML = ""; });
+
+// Sound: browsers only allow it after the visitor interacts, so videos start muted and the
+// first click, tap or key press (or the Sound button) turns sound on for every video on the page
+var soundOn = false, sb = document.createElement("button");
+sb.className = "sound-btn"; sb.type = "button";
+function setSound(on) {
+  soundOn = on;
+  document.querySelectorAll("video").forEach(function (v) { v.muted = !on; });
+  sb.textContent = on ? "Sound on" : "Sound off";
+  sb.setAttribute("aria-pressed", on);
+}
+sb.onclick = function (e) { e.stopPropagation(); setSound(!soundOn); };
+document.body.appendChild(sb);
+setSound(false);
+function firstGesture() { if (!soundOn) { setSound(true); } removeEventListener("pointerdown", firstGesture); removeEventListener("keydown", firstGesture); }
+addEventListener("pointerdown", firstGesture);
+addEventListener("keydown", firstGesture);
+new MutationObserver(function () { document.querySelectorAll("#pl-stage video").forEach(function (v) { v.muted = !soundOn; }); })
+  .observe(document.getElementById("pl-stage"), { childList: true });
