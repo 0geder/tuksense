@@ -54,6 +54,15 @@ side.innerHTML = '<button class="card-main" aria-label="Play the project in one 
 side.querySelector("button").onclick = function () { open(0, 1); };
 path.appendChild(side);
 
+// The run itself (12:14 to 12:38 on 27 October), beside the "Road test and dashboard" card
+var run = document.createElement("aside");
+run.className = "side-card run-card";
+run.innerHTML = '<button class="card-main" aria-label="Play the run"><video class="loop" muted loop playsinline preload="none" poster="videos/the-run.jpg" src="videos/the-run.mp4"></video></button><h2>The run, 12:14 to 12:38</h2><p class="date">The dashboard all the way out over the rough strip and back to the lab</p>';
+run.querySelector("button").onclick = function () { cur = 1; $("pl-title").textContent = "The run, 27 Oct 2026"; $("pl-date").textContent = "12:14 to 12:38, shown at 30 times speed"; $("pl-thumbs").innerHTML = ""; dlg.showModal();
+  $("pl-stage").innerHTML = '<video controls autoplay loop playsinline preload="metadata" poster="videos/the-run.jpg" src="videos/the-run.mp4"></video>';
+  $("pl-cap").textContent = "Speed on the Drive page heading out, then the front and rear cameras on the rough strip detecting trucks, cars and people, and back to the lab. Camera views of nearby cars are blurred."; };
+path.appendChild(run);
+
 // Diagonal links between card corners
 function draw() {
   var box = path.getBoundingClientRect(), cards = path.querySelectorAll(".card"), h = "";
@@ -62,6 +71,7 @@ function draw() {
     var x1 = k % 2 ? r[k].l : r[k].r, x2 = k % 2 ? r[k + 1].r : r[k + 1].l;
     h += '<line class="link" x1="' + x1 + '" y1="' + r[k].b + '" x2="' + x2 + '" y2="' + r[k + 1].t + '"/>';
   }
+  if (cards[1]) { run.style.top = (r[1].t) + "px"; }
   svg.setAttribute("viewBox", "0 0 " + box.width + " " + box.height);
   svg.innerHTML = h;
 }
