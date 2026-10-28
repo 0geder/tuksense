@@ -57,10 +57,10 @@ path.appendChild(side);
 // The run itself (12:14 to 12:38 on 27 October), beside the "Road test and dashboard" card
 var run = document.createElement("aside");
 run.className = "side-card run-card";
-run.innerHTML = '<button class="card-main" aria-label="Play the run"><video class="loop" muted loop playsinline preload="none" poster="videos/the-run.jpg" src="videos/the-run.mp4"></video></button><h2>The run, 12:14 to 12:38</h2><p class="date">The dashboard all the way out over the rough strip and back to the lab</p>';
-run.querySelector("button").onclick = function () { cur = 1; $("pl-title").textContent = "The run, 27 Oct 2026"; $("pl-date").textContent = "12:14 to 12:38, shown at 30 times speed"; $("pl-thumbs").innerHTML = ""; dlg.showModal();
+run.innerHTML = '<button class="card-main" aria-label="Play the run"><video class="loop" muted loop playsinline preload="none" poster="videos/the-run.jpg" src="videos/the-run.mp4"></video></button><h2>The run, 12:23 to 12:38</h2><p class="date">The cameras and sensors over the rough strip and back to the lab</p>';
+run.querySelector("button").onclick = function () { cur = 1; $("pl-title").textContent = "The run, 27 Oct 2026"; $("pl-date").textContent = "12:23 to 12:38, shown at 30 times speed"; $("pl-thumbs").innerHTML = ""; dlg.showModal();
   $("pl-stage").innerHTML = '<video controls autoplay loop playsinline preload="metadata" poster="videos/the-run.jpg" src="videos/the-run.mp4"></video>';
-  $("pl-cap").textContent = "Speed on the Drive page heading out, then the front and rear cameras on the rough strip detecting trucks, cars and people, and back to the lab."; };
+  $("pl-cap").textContent = "The rear and front cameras on the rough strip detecting trucks, cars and people, with distances updating, all the way back to the lab."; };
 path.appendChild(run);
 
 // Diagonal links between card corners
