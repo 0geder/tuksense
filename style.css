@@ -24,7 +24,7 @@ header span, .date { color: var(--accent); }
 
 button { font: inherit; cursor: pointer; }
 .card-main { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: 6px; overflow: hidden; background: var(--ink); }
-.working .card-main { aspect-ratio: 4 / 3; border-radius: 14px; }
+.working .card-main { aspect-ratio: 16 / 9; border-radius: 14px; }
 img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .thumbs, #pl-thumbs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .thumbs button, #pl-thumbs button { position: relative; width: 56px; height: 42px; padding: 0; border: 1px solid var(--ink); border-radius: 4px; overflow: hidden; background: var(--ink); }

@@ -39,7 +39,9 @@ stages.forEach(function (s, k) {
   a.innerHTML = '<button class="card-main" data-j="0" aria-label="Open ' + s[0] + '">' + media + '</button>' +
     "<h2>" + s[0] + '</h2><p class="date">' + s[1] + "</p>" +
     (s[2].length > 1 ? '<div class="thumbs">' + s[2].map(function (it, j) {
-      return '<button data-j="' + j + '"' + (it.v ? ' class="is-video"' : "") + ' aria-label="' + it.c + '"><img src="' + thumb(it) + '" alt="" loading="lazy"></button>';
+      return '<button data-j="' + j + '" aria-label="' + it.c + '">' + (it.v
+        ? '<video class="loop" muted loop playsinline preload="none" poster="' + thumb(it) + '" src="videos/' + it.v + '.mp4"></video>'
+        : '<img src="' + thumb(it) + '" alt="" loading="lazy">') + '</button>';
     }).join("") + "</div>" : "");
   a.querySelectorAll("button").forEach(function (b) { b.onclick = function () { open(k, +b.dataset.j); }; });
   path.appendChild(a);
@@ -65,7 +67,7 @@ path.querySelectorAll("video").forEach(function (v) { v.addEventListener("loaded
 var io = "IntersectionObserver" in window && new IntersectionObserver(function (es) {
   es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { v.play().catch(function () {}); } else { v.pause(); } });
 }, { threshold: 0.25 });
-path.querySelectorAll("video.loop").forEach(function (v) { if (io) { io.observe(v); } else { v.autoplay = true; v.play().catch(function () {}); } });
+path.querySelectorAll("video.loop").forEach(function (v) { v.muted = true; v.defaultMuted = true; if (io) { io.observe(v); } else { v.autoplay = true; v.play().catch(function () {}); } });
 draw();
 
 // In-page player
