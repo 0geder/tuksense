@@ -1,6 +1,7 @@
 // Stages top (result) to bottom (start). v = video name in videos/, i = image name in images/.
 var stages = [
   ["Working", "Road test, 27 Oct 2026", [
+    { v: "road-test-driving", c: "Road test, 27 October 2026: the trike driven in a car park with the telemetry, cameras and dashboard running." },
     { v: "overview", c: "The project in one minute: from the bench to the road test of 27 October 2026." }]],
   ["Road test and dashboard", "27 Oct 2026", [
     { v: "dashboard-timelapse", c: "Dashboard screens recorded every second from 11:30 to 12:40 on 27 October 2026, shown at speed." },
@@ -47,6 +48,13 @@ stages.forEach(function (s, k) {
   path.appendChild(a);
 });
 
+// The one-minute overview, on the right beside the Working card (not part of the zigzag)
+var side = document.createElement("aside");
+side.className = "side-card";
+side.innerHTML = '<button class="card-main" aria-label="Play the project in one minute"><video class="loop" muted loop playsinline preload="none" poster="videos/overview.jpg" src="videos/overview.mp4"></video></button><h2>The project in one minute</h2><p class="date">Bench to road test, with music</p>';
+side.querySelector("button").onclick = function () { open(0, 1); };
+path.appendChild(side);
+
 // Diagonal links between card corners
 function draw() {
   var box = path.getBoundingClientRect(), cards = path.querySelectorAll(".card"), h = "";
@@ -74,7 +82,7 @@ draw();
 function show(j) {
   var it = stages[cur][2][j];
   $("pl-stage").innerHTML = it.v
-    ? '<video controls autoplay muted loop playsinline preload="metadata" poster="videos/' + it.v + '.jpg" src="videos/' + it.v + '.mp4"></video>'
+    ? '<video controls autoplay loop playsinline preload="metadata" poster="videos/' + it.v + '.jpg" src="videos/' + it.v + '.mp4"></video>'
     : '<img src="images/' + it.i + '.jpg" alt="">';
   $("pl-cap").textContent = it.c;
   $("pl-thumbs").querySelectorAll("button").forEach(function (b, n) { b.setAttribute("aria-current", n === j); });

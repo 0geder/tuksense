@@ -24,7 +24,7 @@ header span, .date { color: var(--accent); }
 
 button { font: inherit; cursor: pointer; }
 .card-main { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: 6px; overflow: hidden; background: var(--ink); }
-.working .card-main { aspect-ratio: 16 / 9; border-radius: 14px; }
+.working .card-main { aspect-ratio: 4 / 3; border-radius: 14px; }
 img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .thumbs, #pl-thumbs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .thumbs button, #pl-thumbs button { position: relative; width: 56px; height: 42px; padding: 0; border: 1px solid var(--ink); border-radius: 4px; overflow: hidden; background: var(--ink); }
@@ -62,3 +62,9 @@ footer p { margin: 0; padding-top: 16px; border-top: 1px solid var(--ink); }
   .card::before { position: static; display: block; transform: none; opacity: 1; margin: 0 0 6px; font-size: .8rem; white-space: normal; }
 }
 footer .credit { font-size: .8rem; opacity: .75; margin-top: 4px; }
+
+/* One-minute overview beside the Working card */
+.side-card { position: absolute; top: 32px; right: 0; width: 44%; padding: 10px; border: 1px solid var(--accent); border-radius: 14px; background: var(--paper); }
+.side-card .card-main { aspect-ratio: 16 / 9; }
+.side-card h2 { font-size: 1.05rem; margin-top: 10px; }
+@media (max-width: 640px) { .side-card { position: static; width: 85%; margin: 0 0 40px auto; } }
