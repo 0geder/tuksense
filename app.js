@@ -60,7 +60,7 @@ run.className = "side-card run-card";
 run.innerHTML = '<button class="card-main" aria-label="Play the run"><video class="loop" muted loop playsinline preload="none" poster="videos/the-run.jpg" src="videos/the-run.mp4"></video></button><h2>The run, 12:14 to 12:38</h2><p class="date">The dashboard all the way out over the rough strip and back to the lab</p>';
 run.querySelector("button").onclick = function () { cur = 1; $("pl-title").textContent = "The run, 27 Oct 2026"; $("pl-date").textContent = "12:14 to 12:38, shown at 30 times speed"; $("pl-thumbs").innerHTML = ""; dlg.showModal();
   $("pl-stage").innerHTML = '<video controls autoplay loop playsinline preload="metadata" poster="videos/the-run.jpg" src="videos/the-run.mp4"></video>';
-  $("pl-cap").textContent = "Speed on the Drive page heading out, then the front and rear cameras on the rough strip detecting trucks, cars and people, and back to the lab. Camera views of nearby cars are blurred."; };
+  $("pl-cap").textContent = "Speed on the Drive page heading out, then the front and rear cameras on the rough strip detecting trucks, cars and people, and back to the lab."; };
 path.appendChild(run);
 
 // Diagonal links between card corners
