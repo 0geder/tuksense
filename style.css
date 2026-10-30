@@ -72,3 +72,4 @@ footer .credit { font-size: .8rem; opacity: .75; margin-top: 4px; }
 
 .side-card.run-card { left: 0; right: auto; }
 @media (max-width: 640px) { .side-card.run-card { margin: 0 auto 40px 0; } }
+.working .card-main video, .working .card-main img { object-fit: contain; }
