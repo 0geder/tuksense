@@ -13,10 +13,17 @@ var stages = [
     { i: "enclosure-pi-ribbon", c: "Enclosure holding the Raspberry Pi, with the camera ribbon cable. 26 Oct 2026" },
     { i: "trike-front-wiring", c: "Front of the trike with wiring at the handlebars. 26 Oct 2026" },
     { i: "measuring-pod-positions", c: "Tape-measuring pod positions on the trike. 27 Oct 2026" }]],
-  ["Dashboard and cameras on the bench", "3 to 17 Oct 2026", [
+  ["Bench, cameras and enclosures", "3 to 17 Oct 2026", [
     { v: "camera-feed-bench", c: "Front camera feed on the dashboard screen, bench set-up. 12 Oct 2026" },
     { v: "camera-on-dashboard-bench", c: "Camera image shown on the dashboard screen, boards on the bench. 3 Oct 2026" },
-    { v: "rear-camera-street", c: "Enclosure at a window and the rear camera view of the street on the dashboard. 17 Oct 2026" }]],
+    { v: "rear-camera-street", c: "Enclosure at a window and the rear camera view of the street on the dashboard. 17 Oct 2026" },
+    { v: "enclosure-printing", c: "Printing the enclosure parts on the lab's Prusa Mini. 15 Oct 2026" },
+    { v: "wiring-sensor-boards", c: "Wiring the sensor boards at the lab bench. 15 Oct 2026" },
+    { v: "enclosure-assembly", c: "Assembling the enclosure beside the dashboard screen, shown at 4x. 15 Oct 2026" },
+    { v: "inside-the-enclosure", c: "The Raspberry Pi and the ESP32 inside the printed enclosure. 15 Oct 2026" },
+    { v: "camera-on-laptop", c: "The enclosure's camera image on the laptop. 15 Oct 2026" },
+    { v: "closing-the-lid", c: "Screwing down the lid of a printed enclosure, shown at 8x. 15 Oct 2026" },
+    { v: "late-night-build", c: "Building the enclosure at 3:53 am, shown at 20x. 16 Oct 2026" }]],
   ["Electronics and first builds", "30 Sep to 2 Oct 2026", [
     { i: "bms-app", c: "Battery management app reading the trike pack: 60%, 74.77 V. 30 Sep 2026" }]],
   ["Start", "Late Jul to Sep 2026", [
