@@ -73,3 +73,13 @@ footer .credit { font-size: .8rem; opacity: .75; margin-top: 4px; }
 .side-card.run-card { left: 0; right: auto; }
 @media (max-width: 640px) { .side-card.run-card { margin: 0 auto 40px 0; } }
 .working .card-main video, .working .card-main img { object-fit: contain; }
+
+/* Development stages: story line and every item visible as a tile */
+.card.stage { width: 62%; padding: 12px; }
+.card.stage h2 { margin-top: 0; }
+.story { margin: 6px 0 0; font-size: .92rem; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 10px; }
+.grid.one { grid-template-columns: 1fr; }
+.grid button { position: relative; aspect-ratio: 1; padding: 0; border: 1px solid var(--ink); border-radius: 6px; overflow: hidden; background: var(--ink); }
+.grid.one button { aspect-ratio: 16 / 9; }
+@media (max-width: 640px) { .card.stage { width: 85%; } .grid { grid-template-columns: repeat(2, 1fr); } }
