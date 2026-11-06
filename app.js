@@ -35,7 +35,7 @@ var stages = [
   ["Window test", "17 Oct 2026", [
     { v: "window-test-1", c: "The enclosure at a window, looking out at the street, before it could go on the trike. 17 Oct 2026" },
     { v: "rear-camera-street", c: "Enclosure at a window and the rear camera view of the street on the dashboard. 17 Oct 2026" },
-    { v: "window-test-2", c: "Window test in the evening. 17 Oct 2026" }],
+    { v: "window-test-2", c: "Switching the dashboard to the front camera, which picks up people at the desk. 17 Oct 2026" }],
     "The trike was not free yet, so the finished unit went to a window instead: a real street with real cars and people, seen through the camera and shown on the dashboard."],
   ["3D printing and building the enclosures", "13 to 16 Oct 2026", [
     { v: "enclosure-printing", c: "Printing the enclosure parts on the lab's Prusa Mini. 15 Oct 2026" },
